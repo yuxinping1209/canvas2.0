@@ -7,7 +7,10 @@
 </head>
 <body>
 <canvas id='a'></canvas>
+<div id="actions" class="actions">
 <button id="eraser">橡皮擦</button>
+<button id="brush">画笔</button>
+</div>
 <script>
 	var canvas = document.getElementById('a')
 	var context = canvas.getContext('2d')
@@ -97,7 +100,13 @@
 
     eraser.onclick = function(){
         
-        eraserEnabled = !eraserEnabled //当点击橡皮擦的时候就有相反的作用 
+        eraserEnabled = true 
+        actions.className = "actions x"//当点击橡皮擦的时候，更换为X状态，显示画笔。
+    }
+    brush.onclick = function(){
+        eraserEnabled = false    
+        actions.className = "actions"//点击画笔时和以上相反
+
     }
     
 </script>	
