@@ -4,3 +4,8 @@
 body{
 	margin:0;
 }
+button{
+	position: fixed;
+	left:0;
+	bottom:10px;
+}
