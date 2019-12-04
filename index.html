@@ -5,35 +5,29 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>canvas2.0</title>
 	<link rel="stylesheet" href="./style.css">
+    <script src="//at.alicdn.com/t/font_1544995_pri4kpf9ez9.js"></script>
 </head>
 <body>
 <canvas id='a'></canvas>
-<div id="actions" class="actions">
-<button id="eraser">橡皮擦</button>
-<button id="brush">画笔</button>
+<div id="actions" class="actions" aria-hidden="true">
+<svg id="pen" class="icon">
+    <use xlink:href="#icon-pen" aria-hidden="true"></use>
+</svg>
+<svg id="eraser" class="icon">
+    <use xlink:href="#icon-eraser"></use>
+</svg>
+</div>
+<div class="colors">
+    <ol>
+        <li id="red" class="red"></li>
+        <li id="green" class="green"></li>
+        <li id="blue" class="blue"></li>
+    </ol>
 </div>
 <script>
 	var canvas = document.getElementById('a')
 	var context = canvas.getContext('2d')
 	var using = false
-
-	//画一个矩形
-	context.fillStyle ='red'//填充样式
-	context.fillRect(0,0,10,10)//填充的坐标及大小
-	context.strokeStyle ='red'//描边的颜色
-    context.strokeRect(0,0,10,10)//边框的坐标及大小
-    context.clearRect(0,0,5,5)//清空内容
-    //画一个三角形
-    context.beginPath()//开始路径
-    context.moveTo(50,50)//从这点移动
-    context.lineTo(80,80)//走到这
-    context.lineTo(50,80)//再走到这就闭合了
-    context.fill()//很重要的要填充，填充的颜色根据最后的命令执行，上一个矩形的红色
-    //画圆形
-    context.beginPath()//除了矩形之外，都要开始路径
-    context.arc(150,120,20,0,Math.PI*2)//(圆形坐标x,圆形坐标y,半径,从0开始,终止的弧度，用PI表示，默认顺时针)
-    context.fill()
-
     var lastPoint = {x:undefined,y:undefined}
     resize()
     window.onresize = function(){
@@ -140,19 +134,33 @@
     	using = false
     }
     }
-    var eraserEnabled = false  
+    var eraserEnabled = false 
+    pen.onclick = function(){
+        eraserEnabled = false
+        pen.classList.add('active')
+        eraser.classList.remove('active')
 
-    eraser.onclick = function(){
-        
+    } 
+
+    eraser.onclick = function(){ 
         eraserEnabled = true 
-        actions.className = "actions x"//当点击橡皮擦的时候，更换为X状态，显示画笔。
+        eraser.classList.add('active')
+        pen.classList.remove('active')
     }
-    brush.onclick = function(){
-        eraserEnabled = false    
-        actions.className = "actions"//点击画笔时和以上相反
-
+    red.onclick = function(){
+        context.fillStyle='red'
+        context.strokeStyle='red'
+    }
+    green.onclick = function(){
+        context.fillStyle='green'
+        context.strokeStyle='green'
+    }
+    blue.onclick = function(){
+        context.fillStyle='blue'
+        context.strokeStyle='blue'
     }
     
 </script>	
+
 </body>
 </html>
