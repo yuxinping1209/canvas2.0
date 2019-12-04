@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>canvas2.0</title>
 	<link rel="stylesheet" href="./style.css">
-    <script src="//at.alicdn.com/t/font_1544995_pri4kpf9ez9.js"></script>
+    <script src="//at.alicdn.com/t/font_1544995_j62jlxb1co.js"></script>
 </head>
 <body>
 <canvas id='a'></canvas>
@@ -15,6 +15,9 @@
 </svg>
 <svg id="eraser" class="icon">
     <use xlink:href="#icon-eraser"></use>
+</svg>
+<svg id="clear" class="icon">
+    <use xlink:href="#icon-clear" aria-hidden="true"></use>
 </svg>
 </div>
 <div class="colors">
@@ -158,6 +161,10 @@
     blue.onclick = function(){
         context.fillStyle='blue'
         context.strokeStyle='blue'
+
+    }
+    clear.onclick = function(){
+        context.clearRect(0,0,canvas.width,canvas.height)
     }
     
 </script>	
