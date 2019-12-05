@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>canvas2.0</title>
 	<link rel="stylesheet" href="./style.css">
-    <script src="//at.alicdn.com/t/font_1544995_j62jlxb1co.js"></script>
+    <script src="//at.alicdn.com/t/font_1544995_oqbwfosmzb.js"></script>
 </head>
 <body>
 <canvas id='a'></canvas>
@@ -19,6 +19,8 @@
 <svg id="clear" class="icon">
     <use xlink:href="#icon-clear" aria-hidden="true"></use>
 </svg>
+<svg id="download" class="icon">
+    <use xlink:href="#icon-save"></use>
 </div>
 <div class="colors">
     <ol>
@@ -176,6 +178,15 @@
     }
     thick.onclick =function(){
         lineWidth =10
+    }
+    download.onclick = function(){
+        var url = canvas.toDataURL("image/png")
+        var a = document.createElement('a')
+        document.body.appendChild(a)
+        a.href = url
+        a.download = '我的画'
+        a.target ='-blank'
+        a.click()
     }
     
 </script>	
